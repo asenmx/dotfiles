@@ -1,0 +1,2 @@
+require("asenmx")
+print("hello")
