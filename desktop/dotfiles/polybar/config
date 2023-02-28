@@ -1,0 +1,377 @@
+[colors]
+bg = #2E3440
+bg-alt = #3B4252
+fg = #ECEFF4
+fg-alt = #E5E9F0
+blue = #81A1C1
+orange = #D08770
+purple = #B48EAD
+black = #000
+white = #FFF
+trans = #00000000
+semi-trans-black = #aa000000
+background = #001E1E28
+background-alt = #1E1E28
+background-alt-2 = #bd93f9
+background-alt-3 = #5B5F78
+foreground = #D9E0EE
+accent = #96CDFB
+empty = #00000000
+mauve = #DDB6F2
+green = #ABE9B3
+red = #F28FAD 	
+cyan = #89DCEB
+pink = #F5C2E7
+yellow = #FAE3B0
+teal = #B5E8E0
+gray = #988BA2
+flamingo = #F2CDCD
+
+[bar/mybar]
+monitor = ${env:MONITOR:}
+
+
+modules-right =  xkeyboard uptime  space pulseaudio space wlan wired space cpu memory temperature date 
+modules-center = title
+modules-left = bspwm
+
+width = 100%
+height = 34
+offset-x = 0%
+offset-y = 0%
+radius = 0.0
+fixed-center = false
+wm-restack = bspwm
+override-redirect = true
+
+line-hieght = 6
+line-size = 7
+line-color = #ffffff
+
+
+foreground = ${colors.foreground}
+background = ${colors.background}
+border-color = ${colors.background}
+border-size = 10
+
+
+; fonts
+font-0 = DaddyTimeMono Nerd Font:size=18;2
+font-1 = Feather:style=Bold:size=18;2
+font-2 = Material Icons:style=Regular
+font-3 = icomoon-feather:style=Regular
+
+tray-background = #001E1E28
+tray-position = right
+tray-maxsize = 16
+
+
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = true
+format = <label-state> <label-mode>
+
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-default = 
+
+
+label-focused = %icon%
+label-focused-foreground = #ffffff
+label-focused-background = #3f3f3f
+label-focused-underline = #fba922
+
+
+label-unfocused = %icon% 
+
+label-occupied = %icon%
+label-visible = %icon%
+label-empty = %icon%
+label-separator = |
+label-separator-padding = 2
+label-separator-foreground = #ffb52a
+ 
+
+[module/date]
+type = internal/date
+interval = 1
+
+time = "%H:%M"
+time-alt = "%a, %b %d %H:%M:%S"
+
+format = <label>
+format-prefix = %{T10}%{T-}
+format-prefix-background = ${colors.green}
+format-prefix-foreground = ${colors.bg}
+format-prefix-padding = 1
+label = %{T2}%time%%{T-}
+label-background = ${colors.bg-alt}
+label-foreground = ${colors.fg}
+label-padding = 1
+
+[module/battery]
+type = internal/battery
+label-charging = "%percentage%%  "
+label-charging-background = ${colors.background-alt}
+label-charging-foreground = ${colors.foreground}
+label-discharging-background = ${colors.background-alt}
+label-discharging-foreground = ${colors.foreground}
+label-discharging = "%percentage%%  "
+
+label-full = "%percentage% "
+label-full-background = ${colors.background-alt}
+label-full-foreground = ${colors.foreground}
+format-full-prefix = %{T3}%{T-}
+format-full-prefix-foreground = ${colors.green}
+format-full-prefix-background = ${colors.background-alt}
+
+format-charging = " <label-charging>"
+format-charging-foreground = ${colors.green}
+format-charging-background = ${colors.background-alt}
+format-discharging = "<ramp-capacity> <label-discharging>"
+format-discharging-foreground = ${colors.green}
+format-discharging-background = ${colors.background-alt}
+
+
+ramp-capacity-0 = %{T3} %{T-}
+ramp-capacity-1 = %{T3} %{T-}
+ramp-capacity-2 = %{T3} %{T-}
+ramp-capacity-3 = %{T3} %{T-}
+ramp-capacity-4 = %{T3} %{T-}
+
+
+full-at = 99
+
+battery = BAT0
+adapter = ADP1
+
+poll-interval = 5
+
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+
+format = <label>
+format-prefix = %{T10}%{T-}
+format-prefix-background = ${colors.purple}
+format-prefix-foreground = ${colors.bg}
+format-prefix-padding = 1
+label = %{T2}%percentage:2%%%{T-}
+label-background = ${colors.bg-alt}
+label-foreground = ${colors.fg}
+label-padding = 1
+
+
+[module/wired]
+type = internal/network
+interface = enp3s0
+interval = 1.0
+
+format-connected = <label-connected>
+format-connected-prefix = %{T10}%{T-}
+format-connected-prefix-background = ${colors.orange}
+format-connected-prefix-foreground = ${colors.bg}
+format-connected-prefix-padding = 1
+label-connected = %{T10}%{T-} %{T1}%downspeed%%{T-}
+label-connected-background = ${colors.bg-alt}
+label-connected-foreground = ${colors.fg}
+label-connected-padding = 1
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = %{T10}%{T-}
+format-disconnected-prefix-background = ${colors.red}
+format-disconnected-prefix-foreground = ${colors.bg}
+format-disconnected-prefix-padding = 1
+label-disconnected = %{T10}%{T-}
+label-disconnected-background = ${colors.bg-alt}
+label-disconnected-foreground = ${colors.red}
+label-disconnected-padding = 1
+
+
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 1.0
+
+format-connected = <label-connected>
+format-connected-prefix = %{T10}%{T-}
+format-connected-prefix-background = ${colors.orange}
+format-connected-prefix-foreground = ${colors.bg}
+format-connected-prefix-padding = 1
+label-connected = %{T10}%{T-} %{T1}%downspeed%%{T-}
+label-connected-background = ${colors.bg-alt}
+label-connected-foreground = ${colors.fg}
+label-connected-padding = 1
+
+format-disconnected = <label-disconnected>
+format-disconnected-prefix = %{T10}%{T-}
+format-disconnected-prefix-background = ${colors.red}
+format-disconnected-prefix-foreground = ${colors.bg}
+format-disconnected-prefix-padding = 1
+label-disconnected = %{T10}%{T-}
+label-disconnected-background = ${colors.bg-alt}
+label-disconnected-foreground = ${colors.red}
+label-disconnected-padding = 1
+click-left = exec networkmanager_dmenu
+
+[module/backlight]
+type = internal/backlight
+
+card = intel_backlight
+
+use-actual-brightness = true
+
+enable-scroll = true
+
+format = "<label>"
+format-prefix = "  "
+format-background = ${colors.background-alt}
+format-foreground = ${colors.orange}
+label =  "%percentage%%"
+label-foreground = ${colors.foreground}
+label-background = ${colors.background-alt}
+
+
+
+ramp-0 = %{F#F8BD96}0%{F-} 
+ramp-1 = %{F#F8BD96}0%{F-} 
+ramp-2 = %{F#F8BD96}0%{F-} 
+ramp-3 = %{F#F8BD96}0%{F-} 
+ramp-4 = %{F#F8BD96}0%{F-} 
+
+[module/powermenu]
+type = custom/text
+content = %{T6}  %{T-}%{T1} %{T-}
+content-background = ${colors.accent}
+content-foreground = ${colors.background}
+click-left = ~/.scripts/Rofi/powermenu.sh
+
+
+[module/space]
+type = custom/text
+content = "  "
+content-background = ${colors.background-alt}
+
+
+
+
+[module/memory]
+type = internal/memory
+interval = 1
+
+format = <label>
+format-prefix = %{T10}%{T-}
+format-prefix-background = ${colors.blue}
+format-prefix-foreground = ${colors.bg}
+format-prefix-padding = 1
+label = %{T2}%percentage_used%%%{T-}
+label-background = ${colors.bg-alt}
+label-foreground = ${colors.fg}
+label-padding = 1
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = false
+
+format-volume = <label-volume>
+format-volume-prefix = %{T10}%{T-}
+format-volume-prefix-background = ${colors.orange}
+format-volume-prefix-foreground = ${colors.bg}
+format-volume-prefix-padding = 1
+label-volume = %{T2}%percentage%%%{T-}
+label-volume-background = ${colors.bg-alt}
+label-volume-foreground = ${colors.fg}
+label-volume-padding = 1
+
+format-muted = <label-muted>
+format-muted-prefix = %{T10}%{T-}
+format-muted-prefix-background = ${colors.red}
+format-muted-prefix-foreground = ${colors.bg}
+format-muted-prefix-padding = 1
+label-muted = %{T2}%percentage%%%{T-}
+label-muted-background = ${colors.bg-alt}
+label-muted-foreground = ${colors.fg}
+label-muted-padding = 1
+
+click-right = pavucontrol&
+[module/xkeyboard]
+type = internal/xkeyboard
+
+; List of indicators to ignore
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+format = <label-layout> <label-indicator>
+format-spacing = 0
+label-layout = %name%
+format-background = ${colors.background-alt}
+format-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.mauve}
+
+
+[module/uptime]
+type = custom/script
+interval = 30
+exec = ~/.config/polybar/scripts/uptime.sh
+format = "<label>"
+format-prefix = " "
+format-background = ${colors.background-alt}
+format-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.mauve}
+
+
+
+[module/gap]
+type = custom/text
+content = "  "
+content-background = ${colors.background}
+
+[module/title]
+type = internal/xwindow
+
+format = <label>
+format-prefix = %{T9}%{T-}
+format-prefix-background = ${colors.purple}
+format-prefix-foreground = ${colors.bg}
+format-prefix-padding = 1
+label = %{T2}%title%%{T-}
+label-background = ${colors.bg-alt}
+label-foreground = ${colors.fg}
+label-maxlen = 30
+label-padding = 1
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-prefix = %{T10}%{T-}
+format-prefix-background = ${colors.orange}
+format-prefix-foreground = ${colors.bg}
+format-prefix-padding = 1
+
+format-warn = <label-warn>
+format-warn-prefix = %{T10}%{T-}
+format-warn-prefix-background = ${colors.red}
+format-warn-prefix-foreground = ${colors.bg}
+format-warn-prefix-padding = 1
+
+label = %{T2}%temperature-c%%{T-}
+label-background = ${colors.bg-alt}
+label-foreground = ${colors.fg}
+label-padding = 1
+
+label-warn = %{T2}%temperature-c%%{T-}
+label-warn-background = ${colors.bg-alt}
+label-warn-foreground = ${colors.fg}
+label-warn-padding = 1
